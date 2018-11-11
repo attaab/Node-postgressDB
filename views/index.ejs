@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>receipe book</title>
+    <link rel="stylesheet" type="text/css" href="./assets/plugins/animate.css">
+    <link rel="stylesheet" type="text/css" href="./assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/plugins/font_awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/plugins/font_awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+
+            <!-- this is the modal for adding items -->
+            <div class="modal fade" id="formModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- tag for form for adding items begins here -->
+                        <form method="POST" action="/add">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Add recipe</h4>
+                            </div>
+                            <div class="modal-body">
+                                <!-- these are where the input for the modal goes -->
+                                <div class="form-group">
+                                        <label>Recipe Name</label>
+                                        <input type="text" class="form-control" name="name"/>
+                                </div>
+
+                                <div>
+                                    <label>ingredients</label>
+                                    <textarea class="form-control" name="ingredients"></textarea>
+                                </div>
+                                
+                                <div>
+                                        <label>Directions</label>
+                                        <textarea class="form-control" name="directions"></textarea>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <input type="submit" class="btn btn-primary" value="Save" />
+                            </div>
+                        </form>
+                        <!-- tag for form for adding items ends here -->
+                    </div>
+                </div>
+            </div>
+            <!-- End of modal for adding items -->
+
+
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#formModal">Add recipe</button>
+            <br/>
+            <%for (var i = 0; i < data.length; i++) {%>
+                <div class="well">
+                    <h4>
+                        <div class="recipe_name">
+                            <%=data[i].name%>
+                        </div>
+                        <button class="btn btn-default pull-right" data-toggle="collapse" data-target="#<%=data[i].id%>" aria-expanded="false" aria-controls="<%=data[i].id%>">
+                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+                        </button>
+                        <br/>
+                        <br/>
+                    </h4>
+                    <div class="collapse" id="<%=data[i].id%>">
+                        <br/>
+                        <br/>
+                        <p>
+                            <strong>Ingredients:</strong>
+                            <%=data[i].ingredients%>
+                        </p>
+                        <br/>
+                        <p>
+                            <strong>Directions:</strong>
+                            <%=data[i].directions%>
+                        </p>
+                        <br/>
+                        <hr/>
+
+
+                            <!-- button for editing items -->
+                        <button class="btn btn-primary edit-recipe"
+                               data-toggle="modal"
+                               data-target="#updateModal"
+                               data-name = "<%=data[i].name%>"
+                               data-ingredients = "<%=data[i].ingredients%>"
+                               data-directions = "<%=data[i].directions%>"
+                               data-id = "<%=data[i].id%>"
+                        >
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </button>
+                        <!-- end of button for editing items -->
+
+                        <!-- button for deleting items -->
+                        <button class="btn btn-danger delete-recipe" data-id="<%=data[i].id%>">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </button>
+                        <!-- end of button for deleting items -->
+                    </div>
+                </div>
+
+                <%}%>
+                    <div id="insertData">
+
+                    </div>
+
+                 <!-- this section contains the modal for updating items-->
+                    <div class="modal fade" id="updateModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- tag for form for adding items begins here -->
+                                <form method="POST" action="/update" id ="updateForm" class = "update-form" role="form">
+                                    <input name ="id" class="recipe-id" type="hidden" />
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Edit recipe</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- these are where the input for the modal goes -->
+                                        <div class="form-group">
+                                                <label>Recipe Name</label>
+                                                <input type="text" class="recipe-name form-control" name="UpdateName"/>
+                                        </div>
+
+                                        <div>
+                                            <label>ingredients</label>
+                                            <input class="recipe-ingredients form-control" name="updateIngredients"/>
+                                        </div>
+                                        
+                                        <div>
+                                                <label>Directions</label>
+                                                <input class="recipe-directions form-control" name="updateDirections"/>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <input type="submit" class="btn btn-primary" value="Save" />
+                                    </div>
+                                </form>
+                                <!-- tag for form for adding items ends here -->
+                            </div>
+                        </div>
+                    </div>
+            <!--this is the end of the section for updating items -->
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="./assets/plugins/jquery.js"></script>
+    <script type="text/javascript" src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./assets/main.js"></script>
+</body>
+
+</html>

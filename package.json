@@ -1,0 +1,28 @@
+{
+  "name": "Node-postgressDB",
+  "version": "1.0.0",
+  "description": "Recipe manager built with postgress and Node",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/attaab/Node-postgressDB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.5",
+    "pg": "^6.4.2"
+  },
+  "bugs": {
+    "url": "https://github.com/attaab/Node-postgressDB/issues"
+  },
+  "homepage": "https://github.com/attaab/Node-postgressDB#readme"
+}
